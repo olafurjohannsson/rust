@@ -1,0 +1,10 @@
+[package]
+
+name = "main"
+version = "0.0.1"
+authors = ["Ólafur Aron Jóhannsson <olafur@johannsson.co>"]
+
+[dependencies]
+
+rand="0.3.0"
+mio="0.5"
