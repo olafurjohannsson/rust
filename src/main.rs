@@ -1,12 +1,21 @@
 extern crate rand;
-extern crate mio;
+//extern crate mio;
 
 use std::io;
 use std::thread;
 use std::cmp::Ordering;
 use rand::Rng;
+
+//use mio::udp::UdpSocket;
+
 use std::net::SocketAddr;
-use mio::udp::UdpSocket;
+//use std::net::UdpSocket;
+use std::net;
+use std::net::UdpSocket;
+use std::error::Error;
+//use std::io::net::ip::{Ipv4Addr, SocketAddr};
+//use std::io::net::udp::UdpSocket;
+
 // telnet
 /*
  A TELNET connection is a Transmission Control Protocol (TCP)
@@ -21,22 +30,42 @@ use mio::udp::UdpSocket;
 
 // Rust's approach of separating data (struct & enum) from behaviour (impl) and using trait to group those behaviours for polymorphism
 
+fn socket(listen_on: net::SocketAddr) -> net::UdpSocket {
+    let attempt = net::UdpSocket::bind(listen_on);
+    let mut socket;
+    match attempt {
+        Ok(sock) => {
+            println!("Bound sock to {}", listen_on);
+            socket = sock;
+        },
+        Err(err) => panic!("Could not bind: {}", err)
+    }
+    socket
+}
+
 fn main() {
+
+    
 /*
     let addr = SocketAddr::V4(SocketAddrV4::new(Ipv4Addr::new(127, 0, 0, 1), 0));
     let udp_socket = UdpSocket::bound(&addr).unwrap();
 
     let ipaddr = udp_socket.local_addr().unwrap();
     println!("udp_socket on port: {}", ipaddr);
-*/
 
+
+   
+    
     // spawn() accepts a close, which executes in a new thread - it returns the handle
     let handle = thread::spawn(move || {
-        "Hello from thread"
+        
+
+        return "asdf"
     });
 
     // wait for completion and unwrap result
     println!("{}", handle.join().unwrap());
+
 
     println!("Guess ze numbr");
 
@@ -71,6 +100,7 @@ fn main() {
             }
         }
     }
+    */
 }
 
 
